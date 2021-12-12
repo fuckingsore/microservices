@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: producer-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: post
+  template:
+    metadata:
+     labels:
+       app: post
+    spec:
+      containers:
+        - image: producer:latest
+          imagePullPolicy: Never
+          name: producer-service
+          ports:
+            - containerPort: 8080
